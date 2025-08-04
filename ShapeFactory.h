@@ -7,12 +7,12 @@ class Shape;
 class ShapeFactory
 {
 protected:
-    virtual Shape *createShape() = 0;
-    virtual void toString() = 0;
+    virtual Shape *createShape() = 0; //pure virtual function
+    virtual void toString() = 0; //pure virtual function
 
 public:
     ShapeFactory();
-    virtual ~ShapeFactory();
+    virtual ~ShapeFactory(); //virtual destructor
 };
 
 #endif
