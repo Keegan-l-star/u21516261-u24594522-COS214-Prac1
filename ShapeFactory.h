@@ -1,6 +1,7 @@
 #ifndef SHAPEFACTORY_H
 #define SHAPEFACTORY_H
 
+#include "Shape.h"
 class Shape;
 
 class ShapeFactory
