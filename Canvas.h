@@ -1,0 +1,30 @@
+#ifndef CANVAS_H
+#define CANVAS_H
+
+#include <iostream>
+#include "Memento.h"
+#include "Caretaker.h"
+#include "Shape.h"
+
+class Shape; //Letting it know that Shape exists
+class Caretaker; //Letting it know that Caretaker exists
+class Memento; //Letting it know that Memento exists
+
+class Canvas {
+private:
+    Shape* shapes;
+    Caretaker* caretaker;
+
+public:
+    Canvas();
+    ~Canvas();
+    Memento* captureCurrent();
+    void undoAction(Memento* prev);
+    void redoAction(Memento* post);
+    void continueAction();
+    void addToCanvas(Shape* shape);
+    void removeFromCanvas(Shape* shape);
+    void clearCanvas();
+};
+
+#endif // CANVAS_H
