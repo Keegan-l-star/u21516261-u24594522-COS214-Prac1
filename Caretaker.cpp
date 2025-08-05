@@ -37,7 +37,13 @@ void Caretaker::continueAction(){
 
 Memento* Caretaker::undo(Memento* post){
     if(post==nullptr){
-        return nullptr;
+        if(prev.empty()){
+            return nullptr; // No previous state to undo to
+        }else{
+            Memento* last=prev.front();
+            prev.pop_front();
+            return last;
+        }
     }
     if (prev.empty()) {
         return nullptr;
@@ -50,7 +56,13 @@ Memento* Caretaker::undo(Memento* post){
 
 Memento* Caretaker::redo(Memento* prev){
     if(prev==nullptr){
-        return nullptr;
+        if(post.empty()){
+            return nullptr; // No next state to redo to
+        } else {
+            Memento* first = post.front();
+            post.pop_front();
+            return first;
+        }
     }
     if(post.empty()){
         return nullptr;
@@ -65,3 +77,6 @@ Memento* Caretaker::redo(Memento* prev){
     }
     return first;
 }
+
+
+

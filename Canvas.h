@@ -4,6 +4,11 @@
 #include <iostream>
 #include "Memento.h"
 #include "Caretaker.h"
+#include "PNGExporter.h"
+#include "SquarFactory.h"
+#include "TextFactory.h"
+#include "RectangleFactory.h"
+#include "PDFExporter.h"
 #include "Shape.h"
 
 class Shape; //Letting it know that Shape exists
@@ -19,12 +24,15 @@ public:
     Canvas();
     ~Canvas();
     Memento* captureCurrent();
-    void undoAction(Memento* prev);
-    void redoAction(Memento* post);
+    void undoAction();
+    void redoAction();
     void continueAction();
     void addToCanvas(Shape* shape);
-    void removeFromCanvas(Shape* shape);
+    void removeFromCanvas();
     void clearCanvas();
+    void PNGCanvas();
+    void PDFCanvas();
+    void addShape(std::string shape);
 };
 
-#endif // CANVAS_H
+#endif

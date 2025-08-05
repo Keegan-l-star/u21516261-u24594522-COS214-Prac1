@@ -3,14 +3,16 @@
 
 #include "Shape.h"
 
+class Shape;
+
 class Memento {
     friend class Canvas; // Allow Canvas to access private members
     private:
         Shape* shapes;
         Shape* getShapes();
     public:
-        Memento(Shape* shapes);
+        Memento(Shape* elements);
         ~Memento();
 };
 
-#endif // MEMENTO_H
+#endif

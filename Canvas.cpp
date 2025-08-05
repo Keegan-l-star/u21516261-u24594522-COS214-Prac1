@@ -1,0 +1,91 @@
+#include "Canvas.h"
+
+
+Canvas::Canvas() {
+    caretaker = new Caretaker();
+}
+
+Canvas::~Canvas() {
+    if(caretaker != nullptr) {
+        delete caretaker;
+    }
+    clearCanvas();
+}
+
+Memento* Canvas::captureCurrent() {
+    if (shapes == nullptr) {
+        return nullptr;
+    }
+    return new Memento(shapes);
+}
+
+void Canvas::undoAction() {
+   Memento* j=new Memento(shapes);
+   j=caretaker->undo(j);
+}
+
+void Canvas::redoAction() {
+    Memento* j=new Memento(shapes);
+    j=caretaker->redo(j);
+}
+
+void Canvas::continueAction() {
+    caretaker->continueAction();
+}
+
+void Canvas::clearCanvas(){
+    if (shapes != nullptr) {
+        delete shapes;
+    }
+    shapes = nullptr;
+}
+
+void Canvas::addToCanvas(Shape* shape) {
+    if (shape == nullptr) return;
+    if (shapes == nullptr) {
+        shapes = shape;
+    } else {
+        caretaker->add(captureCurrent());
+        //captures the current state of the canvas before adding a new shape
+        clearCanvas();
+        shapes=shape;
+    }
+
+}
+
+void Canvas::removeFromCanvas() {
+    if (shapes == nullptr){
+        return;
+    // Assuming shapes is a single Shape pointer, not a collection
+    }else{
+        caretaker->continueAction();
+        clearCanvas();
+    }
+}
+
+void Canvas::PNGCanvas() {
+    PNGExporter canvasExporter=PNGExporter(this);
+    canvasExporter.exportToFile();
+}
+
+void Canvas::PDFCanvas() {
+    PDFExporter canvasExporter=PDFExporter(this);
+    canvasExporter.exportToFile();
+}
+
+void Canvas::addShape(std::string shape) {
+    if (shape == "rectangle" || shape == "Rectangle") {
+        RectangleFactory rectangleFactory= RectangleFactory();
+        Shape* newShape = rectangleFactory.createShape();
+    } else if (shape == "Textbox" || shape == "textbox") {
+        TextboxFactory textboxFactory= TextboxFactory();
+        Shape* newShape = textboxFactory.createShape();
+        addToCanvas(newShape);
+    } else if(shape == "square" || shape == "Square") {
+        SquareFactory squareFactory= SquareFactory();
+        Shape* newShape = squareFactory.createShape();
+        addToCanvas(newShape);
+    } else {
+        std::cout << "Unknown shape type: " << shape << std::endl;
+    }
+}

@@ -17,4 +17,4 @@ class Caretaker {
         void continueAction(); 
 };
 
-#endif // CARETAKER_H
+#endif
