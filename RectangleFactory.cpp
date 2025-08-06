@@ -1,9 +1,10 @@
 #include "RectangleFactory.h"
 
 Shape* RectangleFactory::createShape(){
+    toString();
     return new Rectangle();
 }
 
 void RectangleFactory::toString(){
-    //not sure at the moment
+    std::cout<<"Square factory producing square."<<std::endl;
 }
