@@ -10,6 +10,7 @@ ExportCanvas::ExportCanvas(Canvas* exportDis) {
 
 ExportCanvas::~ExportCanvas() {
     if (canvas != nullptr) {
+        delete canvas;
         canvas= nullptr;
     }
 }
