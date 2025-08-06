@@ -1,16 +1,11 @@
 #include "SquareFactory.h"
 
-SquareFactory::SquareFactory(/* args */)
-{
-}
-
-SquareFactory::~SquareFactory()
-{
-}
 Shape *SquareFactory::createShape()
 {
+    toString();
     return new Square();
 }
 void SquareFactory::toString()
 {
+    std::cout<<"Square factory producing square."<<std::endl;
 }
