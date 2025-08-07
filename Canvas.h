@@ -33,6 +33,11 @@ public:
     void PNGCanvas();
     void PDFCanvas();
     void addShape(std::string shape);
+    void changeLength(int length);
+    void changeWidth(int width);
+    void changeColour(std::string colour);
+    void changePosition(int x, int y);
+    void contains();
 };
 
 #endif

@@ -86,6 +86,38 @@ void Canvas::addShape(std::string shape) {
         Shape* newShape = squareFactory.createShape();
         addToCanvas(newShape);
     } else {
-        std::cout << "Unknown shape type: " << shape << std::endl;
+        std::cout << "The shapes doesn't exist, try again"<< std::endl;
+    }
+}
+
+void Canvas::changeLength(int length) {
+    if (shapes != nullptr) {
+        shapes->changeLength(length);
+    }
+}
+
+void Canvas::changeWidth(int width) {
+    if (shapes != nullptr) {
+        shapes->changeWidth(width);
+    }
+}
+
+void Canvas::changeColour(std::string colour) {
+    if (shapes != nullptr) {
+        shapes->changeColour(colour);
+    }
+}
+
+void Canvas::changePosition(int x, int y) {
+    if (shapes != nullptr) {
+        shapes->changePosition(x, y);
+    }
+}
+
+void Canvas::contains() {
+    if (shapes != nullptr) {
+        shapes->toString();
+    }else{
+        std::cout<<"There is no shape on the canvas yet, please add one before calling me again. Kind regards/n -Contains()"<<std::endl;
     }
 }
