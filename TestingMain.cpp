@@ -126,6 +126,19 @@ int main()
     //******************************************************************************************************************************************************************* */
     std::cout << "SECTION 2.4: UNDO" << std::endl;
     std::cout << "Performing an AddToCanvas() for undo test..." << std::endl;
+    
+    // if (!square) {
+    // std::cout << "square is null\n";
+    // return 69;} else{
+    //     std::cout << "square is NOT null\n";
+    // }
+
+    //clone is not null ATP
+    //THE POINTER IS DANGLING
+    // std::cout<<"Testing square pointer..."<<std::endl;
+    // square->toString();
+    // std::cout<<"TEST PASSED"<<std::endl;
+    
     Shape *square_undo = square->clone();
     std::cout << "SUCCESS" << std::endl;
 

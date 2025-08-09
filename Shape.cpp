@@ -28,7 +28,6 @@ Shape::Shape(const Shape& other) {
     this->colour = other.colour;
     this->position_x = other.position_x;
     this->position_y = other.position_y;
-    return;
 }
 
 bool Shape::changeLength(int length) {

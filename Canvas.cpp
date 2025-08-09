@@ -43,12 +43,12 @@ void Canvas::clearCanvas(){
 void Canvas::addToCanvas(Shape* shape) {
     if (shape == nullptr) return;
     if (shapes == nullptr) {
-        shapes = shape;
+        shapes = shape->clone();
     } else {
         caretaker->add(captureCurrent());
         //captures the current state of the canvas before adding a new shape
         clearCanvas();
-        shapes=shape;
+        shapes=shape->clone();
     }
 
 }
