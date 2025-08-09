@@ -1,91 +1,164 @@
 #include "PDFExporter.h"
 #include "PNGExporter.h"
 #include "Canvas.h"
-
+#include "Rectangle.h"
+#include "RectangleFactory.h"
 
 int main()
 {
+    //                                                         SECTION 1:FACTORIES
     // =====================================================================================================================================================================
-    // make and store a green rectangle
-    std::string type = "Rectangle";
-    int length = 9;
-    int width = 10;
-    int x = 20;
-    int y = 32;
-    std::string colour = "Green";
+    std::cout << "SECTION 1: FACTORIES" << std::endl;
+    //******************************************************************************************************************************************************************* */
+
+    std::cout << "SECTION 1.1: RECTANGLE FACTORY" << std::endl;
+
+    std::cout << "Creating Rectangle Factory..." << std::endl;
+    RectangleFactory *recFactory = new RectangleFactory();
+    std::cout << "SUCCESS" << std::endl;
+
+    std::cout << "Instantiating a rectangle using rectangle factory..." << std::endl;
+    Shape *rec = recFactory->createShape();
+    std::cout << "SUCCESS" << std::endl;
+
+    std::cout << "Attempting clone..." << std::endl;
+    Shape *rec_clone = rec->clone();
+    std::cout << "SUCCESS" << std::endl;
+
+    //******************************************************************************************************************************************************************* */
+    std::cout << "SECTION 1.2: SQUARE FACTORY" << std::endl;
+
+    std::cout << "Creating Square Factory..." << std::endl;
+    SquareFactory *squareFactory = new SquareFactory();
+    std::cout << "SUCCESS" << std::endl;
+
+    std::cout << "Instantiating a square using square factory..." << std::endl;
+    Shape *square = squareFactory->createShape();
+    std::cout << "SUCCESS" << std::endl;
+
+    std::cout << "Attempting clone..." << std::endl;
+    Shape *sqr_clone = square->clone();
+    std::cout << "SUCCESS" << std::endl;
+
+    //******************************************************************************************************************************************************************* */
+    std::cout << "SECTION 1.3: TEXTBOX FACTORY" << std::endl;
+
+    std::cout << "Creating Textbox Factory..." << std::endl;
+    TextboxFactory *txtboxFactory = new TextboxFactory();
+    std::cout << "SUCCESS" << std::endl;
+
+    std::cout << "Instantiating a textbox using textbox factory..." << std::endl;
+    Shape *txt = txtboxFactory->createShape();
+    std::cout << "SUCCESS" << std::endl;
+
+    std::cout << std::endl
+              << "SECTION 1: FACTORIES SUCCESSFUL";
+
+    std::cout << "Attempting clone..." << std::endl;
+    Shape *txt_clone = txt->clone();
+    std::cout << "SUCCESS" << std::endl;
+
+    //                                                              SECTION 2:CANVAS
+    // =====================================================================================================================================================================
+    std::cout << "SECTION 2.1: CREATE CANVAS, ADD/STORE A GREEN RECTANGLE" << std::endl;
 
     std::cout << "Creating canvas..." << std::endl;
     Canvas *mspaint = new Canvas();
+    std::cout << "SUCCESS" << std::endl;
 
-    std::cout << "Creating " << type << "..." << std::endl;
-    mspaint->addShape(type);
-    std::cout << "Changing length to " << length << " and width to " << width << "..." << std::endl;
-    mspaint->changeLength(length);
-    mspaint->changeWidth(width);
-    std::cout << "Changing x co-ordinate to " << x << " and y co-ordinate to " << y << "..." << std::endl;
-    mspaint->changePosition(x, y);
-    std::cout<<"Changing colour to "<<colour<<"..."<<std::endl;
-    mspaint->changeColour(colour);
-    std::cout<<"Creating and storing a memento of "<<type<<" canvas element..."<<std::endl;
-    Memento *_memento_rec = mspaint->captureCurrent();
-    // mspaint->addToCanvas();
+    std::cout << "Changing colour of rectangle to green..." << std::endl;
+    rec->changeColour("Green");
+    std::cout << "SUCCESS" << std::endl;
+
+    std::cout << "Changing width and length of rectangle..." << std::endl;
+    rec->changeLength(6);
+    rec->changeWidth(3);
+    std::cout << "SUCCESS" << std::endl;
+
+    std::cout << "Changing position of rectangle..." << std::endl;
+    rec->changePosition(12, 23);
+    std::cout << "SUCCESS" << std::endl;
+
+    std::cout << "Adding rectangle to canvas..." << std::endl;
+    mspaint->addToCanvas(rec);
+    std::cout << "SUCCESS" << std::endl;
+
+    //******************************************************************************************************************************************************************* */
+    std::cout << "SECTION 2.2: ADD/STORE A RED SQUARE" << std::endl;
+
+    std::cout << "Changing colour of square to red..." << std::endl;
+    square->changeColour("Red");
+    std::cout << "SUCCESS" << std::endl;
+
+    std::cout << "Changing width and length of square..." << std::endl;
+    square->changeLength(9);
+    square->changeWidth(9);
+    std::cout << "SUCCESS" << std::endl;
+
+    std::cout << "Changing position of square..." << std::endl;
+    square->changePosition(11, 13);
+    std::cout << "SUCCESS" << std::endl;
+
+    std::cout << "Adding square to canvas..." << std::endl;
+    mspaint->addToCanvas(square);
+    std::cout << "SUCCESS" << std::endl;
+
+    //******************************************************************************************************************************************************************* */
+    std::cout << "SECTION 2.3: ADD/STORE A WHITE TEXTBOX" << std::endl;
+
+    std::cout << "Changing colour of textbox to white..." << std::endl;
+    txt->changeColour("White");
+    std::cout << "SUCCESS" << std::endl;
+
+    std::cout << "Changing width and length of textbox..." << std::endl;
+    txt->changeLength(10);
+    txt->changeWidth(3);
+    std::cout << "SUCCESS" << std::endl;
+
+    std::cout << "Changing position of textbox..." << std::endl;
+    square->changePosition(11, 13);
+    std::cout << "SUCCESS" << std::endl;
+
+    std::cout << "Adding square to canvas..." << std::endl;
+    mspaint->addToCanvas(square);
+    std::cout << "SUCCESS" << std::endl;
+
+    //******************************************************************************************************************************************************************* */
+    std::cout << "SECTION 2.4: UNDO" << std::endl;
+    std::cout << "Performing an AddToCanvas() for undo test..." << std::endl;
+    Shape *square_undo = square->clone();
+    std::cout << "SUCCESS" << std::endl;
+
+    std::cout << "Adding to canvas..." << std::endl;
+    mspaint->addToCanvas(square_undo);
+    std::cout << "SUCCESS" << std::endl;
+
+    std::cout << "Attempting undo..." << std::endl;
+    mspaint->undoAction();
+    std::cout << "SUCCESS" << std::endl;
+
+    //******************************************************************************************************************************************************************* */
+    std::cout << "SECTION 2.5: REDO" << std::endl;
+
+    std::cout << "Attempting redo..." << std::endl;
+    mspaint->redoAction();
+    std::cout << "SUCCESS" << std::endl;
+
+    std::cout << "SECTION 2: CANVAS SUCCESSFUL" << std::endl;
+    //                                                              SECTION 3:PDF/PNG
     // =====================================================================================================================================================================
-
-
-    // =====================================================================================================================================================================
-    // clear canvas, make a red square and store it
-    type = "Square";
-    length = 15;
-    width = 15;
-    x = 30;
-    y = 29;
-    colour = "Red";
-
-    std::cout << "Clearing canvas..." << std::endl;
-    mspaint->clearCanvas();
-    std::cout << "Creating " << type << "..." << std::endl;
-    mspaint->addShape(type);
-    std::cout << "Changing length to " << length << " and width to " << width << "..." << std::endl;
-    mspaint->changeLength(length);
-    mspaint->changeWidth(width);
-    std::cout << "Changing x co-ordinate to " << x << " and y co-ordinate to " << y << "..." << std::endl;
-    mspaint->changePosition(x, y);
-    std::cout<<"Changing colour to "<<colour<<"..."<<std::endl;
-    mspaint->changeColour(colour);
-    std::cout<<"Creating and storing a memento of "<<type<<" canvas element..."<<std::endl;
-    Memento *_memento_square = mspaint->captureCurrent();
-    // =====================================================================================================================================================================
-    
-    
-    // =====================================================================================================================================================================
-    // clear canvas, make a white textbox and store it
-    type = "Textbox";
-    length = 17;
-    width = 19;
-    x = 7;
-    y = 10;
-    colour = "White";
-
-    std::cout << "Clearing canvas..." << std::endl;
-    mspaint->clearCanvas();
-    std::cout << "Creating " << type << "..." << std::endl;
-    mspaint->addShape(type);
-    std::cout << "Changing length to " << length << " and width to " << width << "..." << std::endl;
-    mspaint->changeLength(length);
-    mspaint->changeWidth(width);
-    std::cout << "Changing x co-ordinate to " << x << " and y co-ordinate to " << y << "..." << std::endl;
-    mspaint->changePosition(x, y);
-    std::cout<<"Changing colour to "<<colour<<"..."<<std::endl;
-    mspaint->changeColour(colour);
-    std::cout<<"Creating and storing a memento of "<<type<<" canvas element..."<<std::endl;
-    Memento *_memento_txt = mspaint->captureCurrent();
-    // =====================================================================================================================================================================
-    //Export to PDF and PNG
-
-    std::cout<<"Attempting to export to PDF..."<<std::endl;
+    std::cout << "SECTION 3.1: EXPORT TO PDF" << std::endl;
+    std::cout << "Attempting to export to PDF..." << std::endl;
     mspaint->PDFCanvas();
-    std::cout<<"Attempting to export to PNG..."<<std::endl;
+    std::cout << "SUCCESS" << std::endl;
+
+    //******************************************************************************************************************************************************************* */
+    std::cout << "SECTION 3.2: EXPORT TO PNG" << std::endl;
+    std::cout << "Attempting to export to PNG..." << std::endl;
     mspaint->PNGCanvas();
+    std::cout << "SUCCESS" << std::endl;
+
+    std::cout << "SECTION 3: PDF/PNG SUCCESSFUL" << std::endl;
     // =====================================================================================================================================================================
 
     return 0;
