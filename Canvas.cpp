@@ -20,12 +20,12 @@ Memento* Canvas::captureCurrent() {
 }
 
 void Canvas::undoAction() {
-   Memento* j=new Memento(shapes.clone());
+   Memento* j=new Memento(shapes->clone());
    j=caretaker->undo(j);
 }
 
 void Canvas::redoAction() {
-    Memento* j=new Memento(shapes.clone());
+    Memento* j=new Memento(shapes->clone());
     j=caretaker->redo(j);
 }
 
