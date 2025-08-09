@@ -1,5 +1,7 @@
 #include "PDFExporter.h"
 #include "PNGExporter.h"
+#include "Canvas.h"
+
 
 int main()
 {
@@ -81,12 +83,9 @@ int main()
     //Export to PDF and PNG
 
     std::cout<<"Attempting to export to PDF..."<<std::endl;
-    PDFExporter *_pdf = new PDFExporter(mspaint);
+    mspaint->PDFCanvas();
     std::cout<<"Attempting to export to PNG..."<<std::endl;
-    PNGExporter *_png = new PNGExporter(mspaint);
-
-    _pdf->exportToFile();
-    _png->exportToFile();
+    mspaint->PNGCanvas();
     // =====================================================================================================================================================================
 
     return 0;

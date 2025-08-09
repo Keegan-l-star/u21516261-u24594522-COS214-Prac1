@@ -77,6 +77,7 @@ void Canvas::addShape(std::string shape) {
     if (shape == "rectangle" || shape == "Rectangle") {
         RectangleFactory rectangleFactory= RectangleFactory();
         Shape* newShape = rectangleFactory.createShape();
+        addToCanvas(newShape);
     } else if (shape == "Textbox" || shape == "textbox") {
         TextboxFactory textboxFactory= TextboxFactory();
         Shape* newShape = textboxFactory.createShape();

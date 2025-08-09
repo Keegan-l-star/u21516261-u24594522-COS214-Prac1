@@ -1,7 +1,8 @@
 #ifndef EXPORTCANVAS_H
 #define EXPORTCANVAS_H
 #include <iostream>
-#include "Canvas.h"
+
+class Canvas;
 
 class ExportCanvas {
     private:
@@ -11,7 +12,7 @@ class ExportCanvas {
         void virtual saveToFile()=0;//variant step
     public:
         ExportCanvas(Canvas* exportDis);
-        ~ExportCanvas();
+        virtual ~ExportCanvas();
         void exportToFile(); //Template method operation and the invariant step
 };
 #endif 

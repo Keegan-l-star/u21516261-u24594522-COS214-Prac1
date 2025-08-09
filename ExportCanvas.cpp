@@ -1,4 +1,5 @@
 #include "ExportCanvas.h"
+#include "Canvas.h"
 #include <iostream>
 
 ExportCanvas::ExportCanvas(Canvas* exportDis) {

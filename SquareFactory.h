@@ -7,8 +7,8 @@
 class SquareFactory : public ShapeFactory
 {
 public:
-    SquareFactory(/* args */);
-    ~SquareFactory();
+    SquareFactory(){}
+    ~SquareFactory(){}
     Shape* createShape();
     void toString();
 };

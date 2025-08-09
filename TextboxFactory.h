@@ -7,8 +7,8 @@
 class TextboxFactory : public ShapeFactory
 {
 public:
-    TextboxFactory(/* args */);
-    ~TextboxFactory();
+    TextboxFactory(){}
+    ~TextboxFactory(){}
     Shape* createShape();
     void toString();
 
