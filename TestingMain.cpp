@@ -83,6 +83,10 @@ int main()
     mspaint->addToCanvas(rec);
     std::cout << "SUCCESS" << std::endl;
 
+    std::cout<<"Printing rectangle..."<<std::endl;
+    rec->toString();
+    std::cout<<"SUCCESS"<<std::endl;
+
     //******************************************************************************************************************************************************************* */
     std::cout << "SECTION 2.2: ADD/STORE A RED SQUARE" << std::endl;
 
@@ -103,6 +107,10 @@ int main()
     mspaint->addToCanvas(square);
     std::cout << "SUCCESS" << std::endl;
 
+    std::cout<<"Printing square..."<<std::endl;
+    square->toString();
+    std::cout<<"SUCCESS"<<std::endl;
+
     //******************************************************************************************************************************************************************* */
     std::cout << "SECTION 2.3: ADD/STORE A WHITE TEXTBOX" << std::endl;
 
@@ -116,12 +124,16 @@ int main()
     std::cout << "SUCCESS" << std::endl;
 
     std::cout << "Changing position of textbox..." << std::endl;
-    square->changePosition(11, 13);
+    txt->changePosition(11, 13);
     std::cout << "SUCCESS" << std::endl;
 
     std::cout << "Adding square to canvas..." << std::endl;
     mspaint->addToCanvas(square);
     std::cout << "SUCCESS" << std::endl;
+
+    std::cout<<"Printing textbox..."<<std::endl;
+    txt->toString();
+    std::cout<<"SUCCESS"<<std::endl;
 
     //******************************************************************************************************************************************************************* */
     std::cout << "SECTION 2.4: UNDO" << std::endl;
