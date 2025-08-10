@@ -1,8 +1,17 @@
+#include "Canvas.h"
+#include "Caretaker.h"
+#include "ExportCanvas.h"
+#include "Memento.h"
 #include "PDFExporter.h"
 #include "PNGExporter.h"
-#include "Canvas.h"
 #include "Rectangle.h"
 #include "RectangleFactory.h"
+#include "Shape.h"
+#include "ShapeFactory.h"
+#include "Square.h"
+#include "SquareFactory.h"
+#include "Textbox.h"
+#include "TextboxFactory.h"
 
 int main()
 {
@@ -131,25 +140,22 @@ int main()
     mspaint->addToCanvas(square);
     std::cout << "SUCCESS" << std::endl;
 
+    std::cout<<"Setting text of textbox..."<<std::endl;
+    TextBox* txt_test=new TextBox();
+    txt_test->changeColour("White");
+    txt_test->setText("Hello World");
+    txt_test->changePosition(11,13);
+    txt_test->changeLength(10);
+    txt_test->changeWidth(3);
+
+
     std::cout<<"Printing textbox..."<<std::endl;
-    txt->toString();
+    txt_test->toString();
     std::cout<<"SUCCESS"<<std::endl;
 
     //******************************************************************************************************************************************************************* */
     std::cout << "SECTION 2.4: UNDO" << std::endl;
     std::cout << "Performing an AddToCanvas() for undo test..." << std::endl;
-    
-    // if (!square) {
-    // std::cout << "square is null\n";
-    // return 69;} else{
-    //     std::cout << "square is NOT null\n";
-    // }
-
-    //clone is not null ATP
-    //THE POINTER IS DANGLING
-    // std::cout<<"Testing square pointer..."<<std::endl;
-    // square->toString();
-    // std::cout<<"TEST PASSED"<<std::endl;
     
     Shape *square_undo = square->clone();
     std::cout << "SUCCESS" << std::endl;
