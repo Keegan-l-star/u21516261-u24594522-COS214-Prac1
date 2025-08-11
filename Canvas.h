@@ -11,23 +11,24 @@
 #include "PDFExporter.h"
 #include "Shape.h"
 
-class Shape; //Letting it know that Shape exists
-class Caretaker; //Letting it know that Caretaker exists
-class Memento; //Letting it know that Memento exists
+class Shape;     // Letting it know that Shape exists
+class Caretaker; // Letting it know that Caretaker exists
+class Memento;   // Letting it know that Memento exists
 
-class Canvas {
+class Canvas
+{
 private:
-    Shape* shapes;
-    Caretaker* caretaker;
+    Shape *shapes;
+    Caretaker *caretaker;
 
 public:
     Canvas();
     ~Canvas();
-    Memento* captureCurrent();
+    Memento *captureCurrent();
     void undoAction();
     void redoAction();
     void continueAction();
-    void addToCanvas(Shape* shape);
+    void addToCanvas(Shape *shape);
     void removeFromCanvas();
     void clearCanvas();
     void PNGCanvas();

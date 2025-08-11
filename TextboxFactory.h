@@ -7,12 +7,10 @@
 class TextboxFactory : public ShapeFactory
 {
 public:
-    TextboxFactory(){}
-    ~TextboxFactory(){}
-    Shape* createShape();
+    TextboxFactory() {}
+    ~TextboxFactory() {}
+    Shape *createShape();
     void toString();
-
 };
-
 
 #endif

@@ -4,10 +4,12 @@
 #include "ExportCanvas.h"
 #include <iostream>
 
-class PDFExporter : public ExportCanvas {
+class PDFExporter : public ExportCanvas
+{
 private:
     void saveToFile();
+
 public:
-    PDFExporter(Canvas* exportDis);
+    PDFExporter(Canvas *exportDis);
 };
-#endif 
+#endif

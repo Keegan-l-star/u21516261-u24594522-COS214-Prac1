@@ -1,12 +1,13 @@
 #include "Rectangle.h"
-Rectangle::Rectangle() : Shape() {
-    
+Rectangle::Rectangle() : Shape()
+{
 }
 
-Rectangle::Rectangle(const Rectangle& other) : Shape(other) {
-    
+Rectangle::Rectangle(const Rectangle &other) : Shape(other)
+{
 }
 
-Shape* Rectangle::clone() {
+Shape *Rectangle::clone()
+{
     return new Rectangle(*this);
 }

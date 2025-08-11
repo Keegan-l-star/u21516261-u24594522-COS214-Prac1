@@ -1,19 +1,26 @@
 #include "Memento.h"
 
-Memento::Memento(Shape* elements) {
-    if(elements==nullptr){
+Memento::Memento(Shape *elements)
+{
+    if (elements == nullptr)
+    {
         return;
-    }else{
+    }
+    else
+    {
         shapes = elements->clone();
     }
 }
 
-Memento::~Memento() {
-    if(shapes!=nullptr){
+Memento::~Memento()
+{
+    if (shapes != nullptr)
+    {
         delete shapes;
     }
 }
 
-Shape* Memento::getShapes() {
+Shape *Memento::getShapes()
+{
     return shapes;
 }

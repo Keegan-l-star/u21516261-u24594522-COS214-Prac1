@@ -7,5 +7,5 @@ Shape *SquareFactory::createShape()
 }
 void SquareFactory::toString()
 {
-    std::cout<<"Square factory producing square."<<std::endl;
+    std::cout << "Square factory producing square." << std::endl;
 }

@@ -5,14 +5,16 @@
 
 class Shape;
 
-class Memento {
+class Memento
+{
     friend class Canvas; // Allow Canvas to access private members
-    private:
-        Shape* shapes;
-        Shape* getShapes();
-    public:
-        Memento(Shape* elements);
-        ~Memento();
+private:
+    Shape *shapes;
+    Shape *getShapes();
+
+public:
+    Memento(Shape *elements);
+    ~Memento();
 };
 
 #endif

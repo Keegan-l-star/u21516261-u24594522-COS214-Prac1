@@ -22,6 +22,10 @@ $(TARGET): $(OBJS)
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
+VALGRIND := valgrind
+VGFLAGS  := --leak-check=full --show-leak-kinds=all --track-origins=yes \
+            --errors-for-leak-kinds=all --error-exitcode=1
+
 # Clean build files
 clean:
 	rm -f $(OBJS) $(TARGET)
@@ -31,5 +35,8 @@ rebuild: clean all
 
 run: all
 	./$(TARGET)
+
+v: all
+	$(VALGRIND) $(VGFLAGS) ./$(TARGET) $(ARGS)
 
 .PHONY: all clean rebuild

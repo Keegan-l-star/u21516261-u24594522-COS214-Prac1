@@ -3,12 +3,13 @@
 
 #include "Shape.h"
 
-class Square : public Shape {
+class Square : public Shape
+{
 public:
     Square();
-    Square(const Square& other);
-    Shape* clone();
+    Square(const Square &other);
+    Shape *clone();
     bool changeLength(int length);
     bool changeWidth(int width);
 };
-#endif 
+#endif

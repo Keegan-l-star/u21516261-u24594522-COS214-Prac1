@@ -7,11 +7,10 @@
 class SquareFactory : public ShapeFactory
 {
 public:
-    SquareFactory(){}
-    ~SquareFactory(){}
-    Shape* createShape();
+    SquareFactory() {}
+    ~SquareFactory() {}
+    Shape *createShape();
     void toString();
 };
-
 
 #endif

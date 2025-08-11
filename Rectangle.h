@@ -3,11 +3,12 @@
 
 #include "Shape.h"
 #include <iostream>
-class Rectangle : public Shape {
+class Rectangle : public Shape
+{
 public:
     Rectangle();
-    Rectangle(const Rectangle& other);
-    Shape* clone() override;
+    Rectangle(const Rectangle &other);
+    Shape *clone() override;
 };
 
 #endif

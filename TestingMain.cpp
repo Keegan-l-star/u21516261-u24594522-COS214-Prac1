@@ -17,7 +17,8 @@ int main()
 {
     //                                                         SECTION 1:FACTORIES
     // =====================================================================================================================================================================
-    std::cout << "SECTION 1: FACTORIES" << std::endl;
+    std::cout << std::endl
+              << "SECTION 1: FACTORIES" << std::endl;
     //******************************************************************************************************************************************************************* */
 
     std::cout << "SECTION 1.1: RECTANGLE FACTORY" << std::endl;
@@ -32,7 +33,8 @@ int main()
 
     std::cout << "Attempting clone..." << std::endl;
     Shape *rec_clone = rec->clone();
-    std::cout << "SUCCESS" << std::endl;
+    std::cout << "SUCCESS" << std::endl
+              << std::endl;
 
     //******************************************************************************************************************************************************************* */
     std::cout << "SECTION 1.2: SQUARE FACTORY" << std::endl;
@@ -47,7 +49,8 @@ int main()
 
     std::cout << "Attempting clone..." << std::endl;
     Shape *sqr_clone = square->clone();
-    std::cout << "SUCCESS" << std::endl;
+    std::cout << "SUCCESS" << std::endl
+              << std::endl;
 
     //******************************************************************************************************************************************************************* */
     std::cout << "SECTION 1.3: TEXTBOX FACTORY" << std::endl;
@@ -60,19 +63,28 @@ int main()
     Shape *txt = txtboxFactory->createShape();
     std::cout << "SUCCESS" << std::endl;
 
-    std::cout << std::endl
-              << "SECTION 1: FACTORIES SUCCESSFUL";
-
     std::cout << "Attempting clone..." << std::endl;
     Shape *txt_clone = txt->clone();
     std::cout << "SUCCESS" << std::endl;
 
+    std::cout << "SECTION 1: FACTORIES SUCCESSFUL" << std::endl
+              << std::endl;
+
     //                                                              SECTION 2:CANVAS
     // =====================================================================================================================================================================
+    std::cout << "SECTION 2: CANVAS" << std::endl;
     std::cout << "SECTION 2.1: CREATE CANVAS, ADD/STORE A GREEN RECTANGLE" << std::endl;
 
     std::cout << "Creating canvas..." << std::endl;
     Canvas *mspaint = new Canvas();
+    std::cout << "SUCCESS" << std::endl;
+
+    std::cout << "Testing Case: Empty prev/post..." << std::endl;
+    mspaint->undoAction();
+    std::cout << "Successful undo..." << std::endl;
+
+    mspaint->redoAction();
+    std::cout << "Successful redo..." << std::endl;
     std::cout << "SUCCESS" << std::endl;
 
     std::cout << "Changing colour of rectangle to green..." << std::endl;
@@ -92,9 +104,10 @@ int main()
     mspaint->addToCanvas(rec);
     std::cout << "SUCCESS" << std::endl;
 
-    std::cout<<"Printing rectangle..."<<std::endl;
+    std::cout << "Printing rectangle..." << std::endl;
     rec->toString();
-    std::cout<<"SUCCESS"<<std::endl;
+    std::cout << "SUCCESS" << std::endl
+              << std::endl;
 
     //******************************************************************************************************************************************************************* */
     std::cout << "SECTION 2.2: ADD/STORE A RED SQUARE" << std::endl;
@@ -116,9 +129,10 @@ int main()
     mspaint->addToCanvas(square);
     std::cout << "SUCCESS" << std::endl;
 
-    std::cout<<"Printing square..."<<std::endl;
+    std::cout << "Printing square..." << std::endl;
     square->toString();
-    std::cout<<"SUCCESS"<<std::endl;
+    std::cout << "SUCCESS" << std::endl
+              << std::endl;
 
     //******************************************************************************************************************************************************************* */
     std::cout << "SECTION 2.3: ADD/STORE A WHITE TEXTBOX" << std::endl;
@@ -140,23 +154,23 @@ int main()
     mspaint->addToCanvas(square);
     std::cout << "SUCCESS" << std::endl;
 
-    std::cout<<"Setting text of textbox..."<<std::endl;
-    TextBox* txt_test=new TextBox();
+    std::cout << "Setting text of textbox..." << std::endl;
+    TextBox *txt_test = new TextBox();
     txt_test->changeColour("White");
     txt_test->setText("Hello World");
-    txt_test->changePosition(11,13);
+    txt_test->changePosition(11, 13);
     txt_test->changeLength(10);
     txt_test->changeWidth(3);
 
-
-    std::cout<<"Printing textbox..."<<std::endl;
+    std::cout << "Printing textbox..." << std::endl;
     txt_test->toString();
-    std::cout<<"SUCCESS"<<std::endl;
+    std::cout << "SUCCESS" << std::endl
+              << std::endl;
 
     //******************************************************************************************************************************************************************* */
     std::cout << "SECTION 2.4: UNDO" << std::endl;
     std::cout << "Performing an AddToCanvas() for undo test..." << std::endl;
-    
+
     Shape *square_undo = square->clone();
     std::cout << "SUCCESS" << std::endl;
 
@@ -166,22 +180,44 @@ int main()
 
     std::cout << "Attempting undo..." << std::endl;
     mspaint->undoAction();
-    std::cout << "SUCCESS" << std::endl;
+    std::cout << "SUCCESS" << std::endl
+              << std::endl;
 
     //******************************************************************************************************************************************************************* */
     std::cout << "SECTION 2.5: REDO" << std::endl;
 
     std::cout << "Attempting redo..." << std::endl;
     mspaint->redoAction();
+    std::cout << "SUCCESS" << std::endl<<std::endl;
+
+    //******************************************************************************************************************************************************************* */
+    std::cout << "SECTION 2.6: ADDITIONAL TESTING" << std::endl;
+
+    std::cout << "Performing additional tests..." << std::endl;
+    Canvas *extra = new Canvas();
+    extra->contains();
+    extra->addShape("Rectangle");
+    extra->changeColour("Green");
+    extra->changeLength(3);
+    extra->changeWidth(2);
+    extra->changePosition(3, 3);
+    extra->captureCurrent();
+    extra->contains();
+    extra->removeFromCanvas();
+    delete extra;
     std::cout << "SUCCESS" << std::endl;
 
-    std::cout << "SECTION 2: CANVAS SUCCESSFUL" << std::endl;
+    std::cout << "SECTION 2: CANVAS SUCCESSFUL" << std::endl
+              << std::endl;
+
     //                                                              SECTION 3:PDF/PNG
     // =====================================================================================================================================================================
+    std::cout << "SECTION 3: PDF/PNG" << std::endl;
     std::cout << "SECTION 3.1: EXPORT TO PDF" << std::endl;
     std::cout << "Attempting to export to PDF..." << std::endl;
     mspaint->PDFCanvas();
-    std::cout << "SUCCESS" << std::endl;
+    std::cout << "SUCCESS" << std::endl
+              << std::endl;
 
     //******************************************************************************************************************************************************************* */
     std::cout << "SECTION 3.2: EXPORT TO PNG" << std::endl;
@@ -192,5 +228,18 @@ int main()
     std::cout << "SECTION 3: PDF/PNG SUCCESSFUL" << std::endl;
     // =====================================================================================================================================================================
 
+    delete square;
+    delete squareFactory;
+    delete sqr_clone;
+
+    delete rec;
+    delete recFactory;
+    delete rec_clone;
+
+    delete txt;
+    delete txt_clone;
+    delete txtboxFactory;
+
+    delete mspaint;
     return 0;
 }

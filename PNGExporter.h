@@ -4,11 +4,13 @@
 #include "ExportCanvas.h"
 #include <iostream>
 
-class PNGExporter : public ExportCanvas {
+class PNGExporter : public ExportCanvas
+{
 private:
     void saveToFile();
+
 public:
-    PNGExporter(Canvas* exportDis);
+    PNGExporter(Canvas *exportDis);
 };
 
 #endif

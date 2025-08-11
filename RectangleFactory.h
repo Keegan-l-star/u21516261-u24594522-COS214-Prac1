@@ -7,8 +7,8 @@
 class RectangleFactory : public ShapeFactory
 {
 public:
-    RectangleFactory(){}
-    ~RectangleFactory(){}
+    RectangleFactory() {}
+    ~RectangleFactory() {}
     Shape *createShape();
     void toString();
 };
