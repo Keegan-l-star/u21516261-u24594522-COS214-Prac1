@@ -22,7 +22,7 @@ Memento *Canvas::captureCurrent()
     }
     return new Memento(shapes);
 }
-
+ 
 void Canvas::undoAction()
 {
     if(shapes==nullptr){

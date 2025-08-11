@@ -70,6 +70,39 @@ int main()
     std::cout << "SECTION 1: FACTORIES SUCCESSFUL" << std::endl
               << std::endl;
 
+    //******************************************************************************************************************************************************************* */
+    std::cout << "SECTION 1.4: ADDITIONAL TESTING" << std::endl;
+    Rectangle *test_rec = new Rectangle();
+    test_rec->changeLength(-1);
+    test_rec->changeWidth(-1);
+    test_rec->changeColour("Blue");
+    test_rec->changeLength(8);
+    test_rec->changePosition(4, 4);
+    test_rec->changeWidth(1);
+    test_rec->toString();
+    Shape *test_rec1 = test_rec->clone();
+
+    delete test_rec1;
+    if (test_rec != nullptr)
+    {
+        delete test_rec;
+    }
+
+    Square *test_square = new Square();
+    test_square->changeLength(-1);
+    test_square->changeWidth(-1);
+    test_square->changeLength(8);
+    test_square->changePosition(5, 5);
+    test_square->changeWidth(8);
+    test_square->toString();
+    Shape *test_square1 = test_square->clone();
+
+    delete test_square1;
+    if (test_square != nullptr)
+    {
+        delete test_square;
+    }
+
     //                                                              SECTION 2:CANVAS
     // =====================================================================================================================================================================
     std::cout << "SECTION 2: CANVAS" << std::endl;
@@ -77,6 +110,9 @@ int main()
 
     std::cout << "Creating canvas..." << std::endl;
     Canvas *mspaint = new Canvas();
+    Caretaker *ct = new Caretaker();
+    mspaint->contains();
+    mspaint->captureCurrent();
     std::cout << "SUCCESS" << std::endl;
 
     std::cout << "Testing Case: Empty prev/post..." << std::endl;
@@ -94,6 +130,7 @@ int main()
     std::cout << "Changing width and length of rectangle..." << std::endl;
     rec->changeLength(6);
     rec->changeWidth(3);
+    mspaint->contains();
     std::cout << "SUCCESS" << std::endl;
 
     std::cout << "Changing position of rectangle..." << std::endl;
@@ -127,6 +164,7 @@ int main()
 
     std::cout << "Adding square to canvas..." << std::endl;
     mspaint->addToCanvas(square);
+    mspaint->addToCanvas(nullptr);
     std::cout << "SUCCESS" << std::endl;
 
     std::cout << "Printing square..." << std::endl;
@@ -157,9 +195,13 @@ int main()
     std::cout << "Setting text of textbox..." << std::endl;
     TextBox *txt_test = new TextBox();
     txt_test->changeColour("White");
+    txt_test->changeLength(-1);
+    txt_test->changeWidth(-1);
     txt_test->setText("Hello World");
     txt_test->changePosition(11, 13);
     txt_test->changeLength(10);
+    /**********************************************************************************************************************************************************************/
+    std::cout << "SECTION 2.4: ADDITIONAL TESTING" << std::endl;
     txt_test->changeWidth(3);
 
     std::cout << "Printing textbox..." << std::endl;
@@ -188,23 +230,74 @@ int main()
 
     std::cout << "Attempting redo..." << std::endl;
     mspaint->redoAction();
-    std::cout << "SUCCESS" << std::endl<<std::endl;
+    std::cout << "SUCCESS" << std::endl
+              << std::endl;
 
     //******************************************************************************************************************************************************************* */
     std::cout << "SECTION 2.6: ADDITIONAL TESTING" << std::endl;
 
     std::cout << "Performing additional tests..." << std::endl;
     Canvas *extra = new Canvas();
+    Memento *temp_mem = new Memento(nullptr);
+    if (temp_mem != nullptr)
+    {
+        delete temp_mem;
+    }
+    extra->removeFromCanvas();
     extra->contains();
+    extra->addShape("Square");
+    extra->changeColour("Green");
+    extra->changeLength(3);
+    extra->changeWidth(2);
+    extra->changePosition(3, 3);
+    ct->add(extra->captureCurrent());
+    
+    extra->clearCanvas();
+
+    extra->addShape("Textbox");
+    extra->changeColour("Green");
+    extra->changeLength(3);
+    extra->changeWidth(2);
+    extra->changePosition(3, 3);
+    ct->add(extra->captureCurrent());
+    extra->clearCanvas();
+
     extra->addShape("Rectangle");
     extra->changeColour("Green");
     extra->changeLength(3);
     extra->changeWidth(2);
     extra->changePosition(3, 3);
-    extra->captureCurrent();
+    ct->add(extra->captureCurrent());
     extra->contains();
+
+    ct->continueAction();
+
+    Memento *test_mem = extra->captureCurrent();
     extra->removeFromCanvas();
     delete extra;
+    delete ct;
+
+    if (test_mem != nullptr)
+    {
+        delete test_mem;
+    }
+
+    ShapeFactory *s1 = new RectangleFactory();
+    ShapeFactory *s2 = new SquareFactory();
+    ShapeFactory *s3 = new TextboxFactory();
+
+    delete s1;
+    delete s2;
+    delete s3;
+
+    Shape *_rec = new Rectangle();
+    Shape *_sqr = new Square();
+    Shape *_txt = new TextBox();
+
+    delete _rec;
+    delete _sqr;
+    delete _txt;
+
     std::cout << "SUCCESS" << std::endl;
 
     std::cout << "SECTION 2: CANVAS SUCCESSFUL" << std::endl
@@ -223,7 +316,25 @@ int main()
     std::cout << "SECTION 3.2: EXPORT TO PNG" << std::endl;
     std::cout << "Attempting to export to PNG..." << std::endl;
     mspaint->PNGCanvas();
-    std::cout << "SUCCESS" << std::endl;
+    std::cout << "SUCCESS" << std::endl
+              << std::endl;
+
+    //******************************************************************************************************************************************************************* */
+    std::cout << "SECTION 3.3: ADDITIONAL TESTING" << std::endl;
+    PNGExporter *temp_png = new PNGExporter(mspaint);
+    temp_png->exportToFile();
+    PDFExporter *temp_pdf = new PDFExporter(mspaint);
+    temp_pdf->exportToFile();
+
+    if (temp_pdf != nullptr)
+    {
+        delete temp_pdf;
+    }
+
+    if (temp_png != nullptr)
+    {
+        delete temp_png;
+    }
 
     std::cout << "SECTION 3: PDF/PNG SUCCESSFUL" << std::endl;
     // =====================================================================================================================================================================
