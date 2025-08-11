@@ -2,41 +2,46 @@
 CXX := g++
 CXXFLAGS := -std=c++11 -Wall -Wextra -g
 
-# Output executable name
+# Output executable names
 TARGET := TestingMain
+DEMO_TARGET := DemoMain
 
-# Find all .cpp files in the current directory
-SRCS := $(wildcard *.cpp)
+# All .cpp files except mains
+COMMON_SRCS := $(filter-out %Main.cpp, $(wildcard *.cpp))
+COMMON_OBJS := $(COMMON_SRCS:.cpp=.o)
 
-# Object files (replace .cpp with .o)
-OBJS := $(SRCS:.cpp=.o)
-
-# Default rule
-all: $(TARGET)
-
-# Link all object files into the executable
-$(TARGET): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $@ $^
-
-# Compile .cpp into .o
-%.o: %.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@
-
+# Valgrind settings
 VALGRIND := valgrind
 VGFLAGS  := --leak-check=full --show-leak-kinds=all --track-origins=yes \
             --errors-for-leak-kinds=all --error-exitcode=1
 
-# Clean build files
-clean:
-	rm -f $(OBJS) $(TARGET)
+# Build TestingMain
+$(TARGET): TestingMain.o $(COMMON_OBJS)
+	$(CXX) $(CXXFLAGS) -o $@ $^
 
-# Rebuild everything
-rebuild: clean all
+# Build DemoMain
+$(DEMO_TARGET): DemoMain.o $(COMMON_OBJS)
+	$(CXX) $(CXXFLAGS) -o $@ $^
 
-run: all
+# Generic compile rule
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+all: $(TARGET)
+
+demo: $(DEMO_TARGET)
+	./$(DEMO_TARGET)
+
+run: $(TARGET)
 	./$(TARGET)
 
-v: all
+v: $(TARGET)
 	$(VALGRIND) $(VGFLAGS) ./$(TARGET) $(ARGS)
 
-.PHONY: all clean rebuild
+clean:
+	rm -f *.o $(TARGET) $(DEMO_TARGET)
+
+rebuild: clean all
+
+.PHONY: all clean rebuild run v demo
+
